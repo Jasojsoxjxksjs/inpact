@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قائمة المواعيد</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>قائمة المواعيد</h1>
+        <a href="{% url 'appointment_create' %}" class="btn btn-primary mb-3">إضافة موعد جديد</a>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>اسم المريض</th>
+                    <th>الطبيب</th>
+                    <th>نوع الحالة</th>
+                    <th>تاريخ ووقت البدء</th>
+                    <th>تاريخ ووقت النهاية</th>
+                    <th>التكلفة</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for appointment in appointments %}
+                <tr>
+                    <td>{{ appointment.patient_name }}</td>
+                    <td>{{ appointment.doctor.name }}</td>
+                    <td>{{ appointment.case_type }}</td>
+                    <td>{{ appointment.start_time }}</td>
+                    <td>{{ appointment.end_time }}</td>
+                    <td>{{ appointment.cost }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
